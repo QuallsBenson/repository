@@ -8,7 +8,9 @@ class RepositoryManager{
             $repositories = array(),
             $repositoryResolver,
             $repositoryInitializerResolver,
-            $modelResolver;
+            $modelResolver,
+            $initializationServices = array(),
+            $databaseManager;
 
   public function __construct($repositoryNamespace, $modelNamespace, $repositoryInitializerNamespace = null){
 
@@ -41,6 +43,19 @@ class RepositoryManager{
 
   }
 
+  public function setIntializationSerivces(array $param){
+
+    $this->initializationServices = $param;
+
+  }
+
+  public function setDatabaseManager(DatabaseManagerInterface $manager){
+
+    $this->databaseManager = $manager;
+
+  }
+
+
   protected function getRepository($name){
 
     $repoWrapper  = $this->repositoryResolver->resolve($name.'Repository');
@@ -55,6 +70,7 @@ class RepositoryManager{
 
     return $repoInstance;
   }
+
 
   protected function getRepositoryInitializer($name){
 
@@ -76,14 +92,16 @@ class RepositoryManager{
     return $repoInitializerInstance;
 
   }
+  
 
   protected function initializeRepository($name, RepositoryInterface $repository){
 
     $initializer = $this->getRepositoryInitializer($name);
 
     $repository->setModelResolver( $this->modelResolver );
+    $repository->setDatabaseManager( $this->databaseManager );
 
-    $initializer->initialize($repository);
+    $initializer->initialize( $repository, $this->initializationServices );
 
     return $repository;
 

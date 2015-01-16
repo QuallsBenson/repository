@@ -2,7 +2,7 @@
 
 class RepositoryInitializer implements RepositoryInitializerInterface{
 
-  public function initialize($repository){
+  public function initialize($repository, array $services){
 
     if(! ($repository instanceof RepositoryInterface) )
       throw new \Exception(' Repository Must Implement the RepositoryInterface ');
