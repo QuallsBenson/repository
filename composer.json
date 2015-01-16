@@ -1,0 +1,19 @@
+{
+    "name": "designplug/repository",
+    "description": "Classes for managing repositories",
+    "authors": [
+        {
+            "name": "Ric Anthony Lee",
+            "email": "ricanthonylee@gmail.com"
+        }
+    ],
+    "require": {
+      "designplug/utility-object": "dev-master"
+    },
+    "autoload": {
+      "psr-0": {
+        "Designplug\\Repository": ""
+      }
+    },
+    "target-dir": "Designplug/Repository"
+}

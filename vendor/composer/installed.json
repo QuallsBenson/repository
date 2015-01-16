@@ -1,0 +1,41 @@
+[
+    {
+        "name": "designplug/utility-object",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Designplug/Utility/Object",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/DesignPlug/Utility-Object.git",
+            "reference": "9f56e27a0e1b52aad0e58e906336e697f737f272"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/DesignPlug/Utility-Object/zipball/9f56e27a0e1b52aad0e58e906336e697f737f272",
+            "reference": "9f56e27a0e1b52aad0e58e906336e697f737f272",
+            "shasum": ""
+        },
+        "time": "2014-12-24 03:26:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Designplug\\Utility\\Object": ""
+            },
+            "files": [
+                "Designplug/Utility/Object/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ric Anthony Lee",
+                "email": "ricanthonylee@gmail.com"
+            }
+        ],
+        "description": "Utility Classes for handling objects"
+    }
+]
