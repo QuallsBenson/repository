@@ -31,7 +31,7 @@ abstract class Repository implements RepositoryInterface{
 
     //connect to database if not connected
     if(!$this->databaseManager->isConnected())
-      $this->databaseManager->conntect();
+      $this->databaseManager->connect();
 
     return $this->models[$name] = $model->getInstance();
 

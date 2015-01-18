@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-      "designplug/utility-object": "1.0.0"
+      "designplug/utility-object": "~1.0.0"
     },
     "autoload": {
       "psr-0": {
