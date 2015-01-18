@@ -4,21 +4,21 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c42e35750a857889679737bc43054a60",
+    "hash": "8893a5ca56b93530f6ddc883dfbc06f5",
     "packages": [
         {
             "name": "designplug/utility-object",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "target-dir": "Designplug/Utility/Object",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DesignPlug/Utility-Object.git",
-                "reference": "9f56e27a0e1b52aad0e58e906336e697f737f272"
+                "reference": "6498d3896cfc432b422c7e03dfc6ecffc2200a3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DesignPlug/Utility-Object/zipball/9f56e27a0e1b52aad0e58e906336e697f737f272",
-                "reference": "9f56e27a0e1b52aad0e58e906336e697f737f272",
+                "url": "https://api.github.com/repos/DesignPlug/Utility-Object/zipball/6498d3896cfc432b422c7e03dfc6ecffc2200a3b",
+                "reference": "6498d3896cfc432b422c7e03dfc6ecffc2200a3b",
                 "shasum": ""
             },
             "type": "library",
@@ -41,15 +41,13 @@
                 }
             ],
             "description": "Utility Classes for handling objects",
-            "time": "2014-12-24 03:26:00"
+            "time": "2015-01-17 22:40:30"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "designplug/utility-object": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
