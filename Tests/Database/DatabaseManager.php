@@ -12,4 +12,12 @@ class DatabaseManager implements DatabaseManagerInterface{
 		return 'is connected';
 	}
 
+	function insert(){
+		return 'insert';
+	}
+
+	function delete(){
+		return 'delete';
+	}
+
 }

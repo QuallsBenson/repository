@@ -1,6 +1,7 @@
 <?php namespace Designplug\Repository;
 
 use Designplug\Utility\Object\ObjectResolver;
+use Designplug\Repository\Database\DatabaseManagerInterface;
 
 class RepositoryManager{
 
@@ -43,7 +44,7 @@ class RepositoryManager{
 
   }
 
-  public function setIntializationSerivces(array $param){
+  public function setInitializationServices(array $param){
 
     $this->initializationServices = $param;
 
@@ -92,7 +93,7 @@ class RepositoryManager{
     return $repoInitializerInstance;
 
   }
-  
+
 
   protected function initializeRepository($name, RepositoryInterface $repository){
 
