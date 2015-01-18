@@ -2,7 +2,9 @@
 
 use Designplug\Utility\Object\ObjectResolver;
 use Designplug\Utility\Object\ObjectWrapper;
-use Designplug\Repository\RepositoryManager;
+use Designplug\Repository\RepositoryManager;u
+se Designplug\Repository\Tests\Database\DatabaseManager;
+
 
 require dirname(dirname(__FILE__)) .'/vendor/autoload.php';
 
@@ -13,6 +15,8 @@ class RepositoryTest extends PHPUnit_Framework_TestCase{
     $manager = new RepositoryManager('Designplug\Repository\Tests\Repository',
                                      'Designplug\Repository\Tests\Entity',
                                      'Designplug\Repository\Tests\RepositoryInitializer');
+
+    $manager->setDatabaseManager(new DatabaseManager);
 
     $repo    = $manager->get('Entity1');
 

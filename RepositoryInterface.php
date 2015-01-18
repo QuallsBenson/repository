@@ -9,5 +9,7 @@ interface RepositoryInterface{
   public function getModel($name);
   public function setDatabaseManager(DatabaseManagerInterface $manager);
   public function getDatabaseManager();
+  public function addService(array $services);
+  public function getService($serviceName);
 
 }

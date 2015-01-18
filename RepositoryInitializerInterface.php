@@ -3,6 +3,6 @@
 
 interface RepositoryInitializerInterface{
 
-  public function initialize($repository);
+  public function initialize($repository, array $services = array());
 
 }
