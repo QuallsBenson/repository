@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Designplug\\Utility\\Object' => array($vendorDir . '/designplug/utility-object'),
     'Designplug\\Repository' => array($baseDir . '/'),
 );

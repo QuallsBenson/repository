@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-      "designplug/utility-object": "~1.0.0"
+      "designplug/utility-object": "~1.0.0",
+      "symfony/console": "3.0.*@dev"
     },
     "autoload": {
       "psr-0": {
