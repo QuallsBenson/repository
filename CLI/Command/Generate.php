@@ -1,4 +1,4 @@
-<?php namepspace Designplug\Repository\CLI\Command;
+<?php namespace Designplug\Repository\CLI\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,6 +8,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Designplug\Repository\FileSystem\Generator;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Helper\QuestionHelper;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Finder\Finder;
 
 class Generate extends Command{
 
@@ -19,47 +23,71 @@ class Generate extends Command{
             'name',
             InputArgument::OPTIONAL,
             'What\'s the Name of the Repository'
-         )
-         ->addOption(
-            'auto',
-            null,
-            InputOption::VALUE_NONE,
-            'If set, Repository will be generated without dialog'
-       );
+         );
+
+  }
+
+  protected function confirmGeneration($name){
+
+     return new ConfirmationQuestion('Confirm Generation of '.$name .'Repository ?', true);
+
+  }
+
+  protected function getConfigurationOptions($repositoryName, InputInterface $input, OutputInterface $output){
+
+    //search directories for configuration file
+
+    $finder = new Finder;
+    $finder->files()
+           ->in(getcwd().'/config/repository')
+           ->name('config.json');
+
+    foreach($finder as $file){
+      $json = $file->getContents();
+    }
+
+
+    //use the first configuration available
+    $options = json_decode($json);
+    $options->name = $repositoryName;
+
+    return (array) $options;
+
+  }
+
+  protected function generateRepository(array $options = array()){
+
+    $gen  = new Generator;
+    $gen->generateRepository($options);
 
   }
 
   protected function execute(InputInterface $input, OutputInterface $output){
 
-    $name = $input->getArgument('name');
-    $auto = $input->getOption('auto');
-    $qhlp = $this->getHelper('question');
-    $gen  = new Generator;
+    $name    = $input->getArgument('name');
+    $qhelper = $this->getHelper('question');
 
-    if($name && $auto){
+    //give error if name is not set
+    if(!$name) throw new \Exception('missing argument name in Repository:generate {name}');
 
-      $conf = new ConfirmationQuestion('Confirm Generation of '.$name .'Repository ?', true);
-      
-      if(!$qhlp->ask($input, $output, $conf)) return;
+    $options = $this->getConfigurationOptions($name, $input, $output);
 
-      try{
+    //ask user to confirm generation, exit if not
+    $confirm = $this->confirmGeneration($name);
+    if(!$qhelper->ask($input, $output, $confirm)) return;
 
-        $gen->generateRepository(array('name' => $name));
-        $output->writeln("Repository " .$name ." was successfully created");
+    //if user confirms generation attempt to generate files using options
+    try{
 
-      } catch(\Exception $e) {
+      $this->generateRepository($options);
 
-        $output->writeln("Repository Generation failed with the following message:\n\n");
-        $output->writeln($e->getMessage());
+    } catch(\Exception $e) {
 
-      }
-    }
-
-
-    if(!$name){
+      $output->writeln("Repository Generation failed with the following message:\n\n");
+      $output->writeln($e->getMessage());
+      return;
 
     }
-
 
   }
 

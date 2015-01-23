@@ -3,9 +3,13 @@
 
 class Generator{
 
-  protected $rootPath;
+  protected $generationPath,
+            $generationTemplatePath,
+            $elementName;
 
-  public function generateRepository(array $options = array(), $assumeDefault = true){
+  public function generateRepository(array $options = array()){
+
+    var_dump($options);
 
   }
 
@@ -13,5 +17,12 @@ class Generator{
 
   }
 
+  public function setGenerationTemplatePath($path){
+
+  }
+
+  public function setRepositoryName($name){
+
+  }
 
 }
