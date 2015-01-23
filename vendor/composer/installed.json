@@ -17,7 +17,7 @@
         },
         "time": "2015-01-17 22:40:30",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Designplug\\Utility\\Object": ""
@@ -40,41 +40,41 @@
     },
     {
         "name": "symfony/console",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v2.6.3",
+        "version_normalized": "2.6.3.0",
         "target-dir": "Symfony/Component/Console",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/Console.git",
-            "reference": "cd18eacbbaa5248b4b9b2307654e65ee40caff71"
+            "reference": "6ac6491ff60c0e5a941db3ccdc75a07adbb61476"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Console/zipball/cd18eacbbaa5248b4b9b2307654e65ee40caff71",
-            "reference": "cd18eacbbaa5248b4b9b2307654e65ee40caff71",
+            "url": "https://api.github.com/repos/symfony/Console/zipball/6ac6491ff60c0e5a941db3ccdc75a07adbb61476",
+            "reference": "6ac6491ff60c0e5a941db3ccdc75a07adbb61476",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.5.9"
+            "php": ">=5.3.3"
         },
         "require-dev": {
             "psr/log": "~1.0",
-            "symfony/event-dispatcher": "~2.7|~3.0",
-            "symfony/process": "~2.7|~3.0"
+            "symfony/event-dispatcher": "~2.1",
+            "symfony/process": "~2.1"
         },
         "suggest": {
             "psr/log": "For using the console logger",
             "symfony/event-dispatcher": "",
             "symfony/process": ""
         },
-        "time": "2015-01-20 01:40:45",
+        "time": "2015-01-06 17:50:02",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.0-dev"
+                "dev-master": "2.6-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Symfony\\Component\\Console\\": ""
