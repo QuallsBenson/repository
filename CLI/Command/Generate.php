@@ -33,7 +33,7 @@ class Generate extends Command{
 
   }
 
-  protected function getConfigurationOptions($repositoryName, InputInterface $input, OutputInterface $output){
+  protected function getConfigurationFileContents(){
 
     //search directories for configuration file
 
@@ -46,10 +46,18 @@ class Generate extends Command{
       $json = $file->getContents();
     }
 
+    return (array) json_decode($json);
 
-    //use the first configuration available
-    $options = json_decode($json);
-    $options->name = $repositoryName;
+  }
+
+  protected function getConfigurationOptions($repositoryName, InputInterface $input, OutputInterface $output){
+
+
+    //get the contents of the config file as an array of options
+    $options = $this->getConfigurationFileContents();
+
+    //add the name to the array
+    $options['name'] = $repositoryName;
 
     return (array) $options;
 
