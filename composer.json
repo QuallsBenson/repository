@@ -10,8 +10,9 @@
     "require": {
       "designplug/utility-object": "~1.0.0",
       "symfony/console": "~2.6",
-        "symfony/filesystem": "~2.6",
-        "symfony/finder": "~2.6"
+      "symfony/filesystem": "~2.6",
+      "symfony/finder": "~2.6",
+      "twig/twig": "~1.17"
     },
     "autoload": {
       "psr-0": {

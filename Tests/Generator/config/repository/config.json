@@ -1,7 +1,7 @@
 {
-  "rootDir": "",
+  "generationPath": "C:\\xampp\\htdocs\\sites\\src\\Designplug\\Core\\BaseBundle",
   "modelNamespace":       "Designplug\\Repository\\Tests\\Generator\\Model",
   "initializerNamespace": "Designplug\\Repository\\Tests\\Generator\\RepositoryInitializer",
   "repositoryNamespace" : "Designplug\\Repository\\Tests\\Generator\\Repository",
-  "templateDirectory"   : "Designplug\\Repository\\Tests\\Generator\\config\\repository\\templates"
+  "templatePath"   : "Designplug\\Repository\\Tests\\Generator\\config\\repository\\templates"
 }

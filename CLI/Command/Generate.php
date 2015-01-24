@@ -1,12 +1,12 @@
 <?php namespace Designplug\Repository\CLI\Command;
 
+use Designplug\Repository\FileSystem\RepositoryGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Designplug\Repository\FileSystem\Generator;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Filesystem\Filesystem;
@@ -17,7 +17,7 @@ class Generate extends Command{
 
   public function configure(){
 
-    $this->setName('Repository:generate')
+    $this->setName('repository:generate')
          ->setDescription('Generate a Repository')
          ->addArgument(
             'name',
@@ -77,8 +77,8 @@ class Generate extends Command{
 
   protected function generateRepository(array $options = array()){
 
-    $gen  = new Generator;
-    $gen->generateRepository($options);
+    $gen  = new RepositoryGenerator;
+    $gen->generate($options);
 
   }
 
