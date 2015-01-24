@@ -33,14 +33,26 @@ class Generate extends Command{
 
   }
 
+  protected function getConfigurationFileDir(){
+
+    return getcwd().'/config/repository';
+
+  }
+
+  protected function getConfigurationFileName(){
+
+    return 'config.json';
+
+  }
+
   protected function getConfigurationFileContents(){
 
     //search directories for configuration file
 
     $finder = new Finder;
     $finder->files()
-           ->in(getcwd().'/config/repository')
-           ->name('config.json');
+           ->in( $this->getConfigurationFileDir() )
+           ->name( $this->getConfigurationFileName() );
 
     foreach($finder as $file){
       $json = $file->getContents();
