@@ -13,7 +13,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Finder\Finder;
 
-class Generate extends Command{
+class GenerateCommand extends Command{
 
   public function configure(){
 
@@ -29,7 +29,7 @@ class Generate extends Command{
 
   protected function confirmGeneration($name){
 
-     return new ConfirmationQuestion('Confirm Generation of '.$name .'Repository ?', true);
+     return new Question('Confirm Generation of '.$name .'Repository [yes]?', 'yes');
 
   }
 
@@ -94,12 +94,17 @@ class Generate extends Command{
 
     //ask user to confirm generation, exit if not
     $confirm = $this->confirmGeneration($name);
-    if(!$qhelper->ask($input, $output, $confirm)) return;
+    if($qhelper->ask($input, $output, $confirm) !== 'yes'){
 
+      $output->writeln("\n\nRepository Generation Cancelled\n\n");
+      return;
+
+    }
     //if user confirms generation attempt to generate files using options
     try{
 
       $this->generateRepository($options);
+      $output->writeln("\n\nRepository {$name} was successfully Generated \n\n");
 
     } catch(\Exception $e) {
 

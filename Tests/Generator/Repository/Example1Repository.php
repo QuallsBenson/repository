@@ -2,7 +2,7 @@
 
 use Designplug\Repository\Repository;
 
-class exampleRepository extends Repository{
+class Example1Repository extends Repository{
 
 //defined repository methods here
 

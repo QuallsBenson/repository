@@ -2,10 +2,10 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use Designplug\Repository\CLI\Command\Generate;
+use Designplug\Repository\CLI\Command\GenerateCommand;
 
 require dirname(__FILE__) .'/../../vendor/autoload.php';
 
 $application = new Application();
-$application->add(new Generate);
+$application->add(new GenerateCommand);
 $application->run();

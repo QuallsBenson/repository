@@ -39,8 +39,10 @@ class RepositoryGenerator{
   protected function createFile($file, $template, array $param = array()){
 
     $content = $this->parseTemplate($template, $param);
+    $path    = $this->getGenerationPath() .DIRECTORY_SEPARATOR . $file;
 
-    $this->filesystem->dumpFile( $this->getGenerationPath() .DIRECTORY_SEPARATOR . $file, $content );
+    if(!$this->filesystem->exists($path))
+      $this->filesystem->dumpFile( $path , $content );
 
   }
 
@@ -227,7 +229,7 @@ class RepositoryGenerator{
 
     $name = $this->addSuffix($name, 'RepositoryInitializer');
 
-    $this->repositoryInitializerName = $name;
+    $this->repositoryInitializerName = ucfirst($name);
 
     return $this;
 
@@ -249,7 +251,7 @@ class RepositoryGenerator{
 
   public function getRepositoryInitializerNamespace(){
 
-    $this->repositoryInitializerNamespace;
+    return $this->repositoryInitializerNamespace;
 
   }
 

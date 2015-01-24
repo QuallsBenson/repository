@@ -1,5 +1,9 @@
 <?php  namespace Designplug\Repository\Tests\Generator\Model ;
 
-class example{
+class Example1237{
+
+  function doSomething(){
+    echo 'done';
+  }
 
 }

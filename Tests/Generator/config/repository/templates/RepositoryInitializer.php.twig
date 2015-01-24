@@ -1,7 +1,12 @@
 <?php {% if repositoryInitializerNamespace|default(false) %} namespace {{ repositoryInitializerNamespace }}; {% endif %}
 
+
 use Designplug\Repository\RepositoryInitializer;
-{% if repositoryInitializerNamespace|default(false) %} use {{ repositoryNamespace }}\{{ repositoryName }}; {% endif %}
+{% if repositoryInitializerNamespace|default(false) %}
+use {{ repositoryNamespace }}\{{ repositoryName }};
+{% endif %}
+
+
 
 class {{ repositoryInitializerName }} extends RepositoryInitializer{
 
