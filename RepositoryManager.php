@@ -15,26 +15,40 @@ class RepositoryManager{
 
   public function __construct($repositoryNamespace, $modelNamespace, $repositoryInitializerNamespace = null){
 
-    $this->repositoryResolver            = new ObjectResolver;
-    $this->repositoryInitializerResolver = new ObjectResolver;
-    $this->modelResolver                 = new ObjectResolver;
-
     //set namespace to load models from
-    $this->modelResolver->addNamespace($modelNamespace);
+    $this->getModelResolver()->addNamespace($modelNamespace);
 
     //resolve repositories from the given namespace
-    $this->repositoryResolver->addNamespace($repositoryNamespace);
+    $this->getRepositoryResolver()->addNamespace($repositoryNamespace);
 
     //resolve repository from the given namespace
     //but default to the current namespace if none found
-    $this->repositoryInitializerResolver->addNamespace($repositoryInitializerNamespace)
-    ->addNamespace(__NAMESPACE__);
+    $this->getRepositoryInitializerResolver()->addNamespace($repositoryInitializerNamespace)
+                                             ->addNamespace(__NAMESPACE__);
+  }
+
+  public function getRepositoryResolver(){
+
+    return $this->repositoryResolver ?: $this->repositoryResolver = new ObjectResolver;
+
+  }
+
+  public function getRepositoryInitializerResolver(){
+
+    return $this->repositoryInitializerResolver ?: $this->repositoryInitializerResolver = new ObjectResolver;
+
+  }
+
+  public function getModelResolver(){
+
+    return $this->modelResolver ?: $this->modelResolver = new ObjectResolver;
+
   }
 
   public function get($repositoryName){
 
     if(isset($this->repositories[$repositoryName]))
-    return $this->repositories[$repositoryName];
+      return $this->repositories[$repositoryName];
 
     $repo = $this->getRepository($repositoryName);
 
@@ -59,15 +73,15 @@ class RepositoryManager{
 
   protected function getRepository($name){
 
-    $repoWrapper  = $this->repositoryResolver->resolve($name.'Repository');
+    $repoWrapper  = $this->getRepositoryResolver()->resolve($name.'Repository');
 
     if(!$repoWrapper)
-    throw new \Exception('Repository ' .$name .' was not found');
+      throw new \Exception('Repository ' .$name .' was not found');
 
     $repoInstance = $repoWrapper->getInstance();
 
     if( ($repoInstance instanceof RepositoryInterface) === false )
-    throw new \Exception('Repository must implement the Repository Interface');
+      throw new \Exception('Repository must implement the Repository Interface');
 
     return $repoInstance;
   }
@@ -75,7 +89,7 @@ class RepositoryManager{
 
   protected function getRepositoryInitializer($name){
 
-    $resolver = $this->repositoryInitializerResolver;
+    $resolver = $this->getRepositoryInitializerResolver();
     $name     = $name .'RepositoryInitializer';
     $default  = 'repositoryInitializer';
 
@@ -87,8 +101,9 @@ class RepositoryManager{
 
     $repoInitializerInstance = $repoInitializerWrapper->getInstance();
 
-    if(($repoInitializerInstance instanceof RepositoryInitializerInterface) === false)
-    throw new \Exception('Repository Initializer must implement RepositoryInitializerInterface');
+    if(($repoInitializerInstance instanceof RepositoryInitializerInterface) === false){
+      throw new \Exception('Repository Initializer must implement RepositoryInitializerInterface');
+    }
 
     return $repoInitializerInstance;
 
@@ -99,7 +114,7 @@ class RepositoryManager{
 
     $initializer = $this->getRepositoryInitializer($name);
 
-    $repository->setModelResolver( $this->modelResolver );
+    $repository->setModelResolver( $this->getModelResolver() );
     $repository->setDatabaseManager( $this->databaseManager );
 
     $initializer->initialize( $repository, $this->initializationServices );

@@ -36,88 +36,16 @@ class RepositoryGenerator{
 
   }
 
-  protected function createFile($file, $template, array $param = array()){
-
-    $content = $this->parseTemplate($template, $param);
-    $path    = $this->getGenerationPath() .DIRECTORY_SEPARATOR . $file;
-
-    if(!$this->filesystem->exists($path))
-      $this->filesystem->dumpFile( $path , $content );
-
-  }
-
-  protected function getTemplateParser(){
-
-    if(!isset($this->templateParser)){
-
-      $dir                   = $this->getGenerationPath() .DIRECTORY_SEPARATOR .$this->getGenerationTemplatePath();
-      $loader                = new \Twig_Loader_Filesystem($dir);
-      $this->templateParser  = new \Twig_Environment($loader);
-
-    }
-
-    return $this->templateParser;
-
-  }
-
-  protected function parseTemplate($template, array $param = array()){
-
-    return $this->getTemplateParser()->render($template.'.php.twig', $param);
-
-  }
-
-  protected function createDirectory($dir){
-
-    $ds  = DIRECTORY_SEPARATOR;
-    $dir = rtrim($this->getGenerationPath(), '/\\') .$ds .ltrim($dir, '/\\');
-    $dir = str_replace( array('/','\\'), $ds, rtrim($dir, '/\\') );
-
-    if(!$this->filesystem->exists($dir))
-      $this->filesystem->mkdir($dir);
-
-    return $dir;
-
-  }
-
-  protected function generateModel(array $param = array()){
-
-    return $this->generateFile('Model', $param);
-
-  }
-
-  protected function generateRepository(array $param = array()){
-
-      return $this->generateFile('Repository', $param);
-
-  }
-
-  protected function generateRepositoryInitializer(array $param = array()){
-
-      return $this->generateFile('RepositoryInitializer', $param);
-
-  }
-
-  protected function generateFile($type, array $param = array()){
-
-    $type = ucfirst($type);
-    $this->createDirectory( $this->{'get' .$type .'Namespace'}() );
-    $file =  $this->{'get'.$type.'Namespace'}() .DIRECTORY_SEPARATOR .$this->{'get' .ucfirst($type) .'Name' }() .'.php';
-    return   $this->createFile($file, $type, $param);
-
-  }
-
-
-
   public function setOptions(array $options){
 
-    $this->setGenerationPath(@$options['generationPath'])
+    $this->setGenerationPath($options['generationPath'])
          ->setGenerationTemplatePath(@$options['templatePath'])
          ->setModelName(@$options['modelName'] ?: $options['name'])
-         ->setModelNamespace(@$options['modelNamespace'])
+         ->setModelNamespace($options['modelNamespace'])
          ->setRepositoryName(@$options['repositoryName'] ?: $options['name'])
-         ->setRepositoryNamespace(@$options['repositoryNamespace'])
+         ->setRepositoryNamespace($options['repositoryNamespace'])
          ->setRepositoryInitializerName(@$options['repositoryName'] ?: $options['name'])
-         ->setRepositoryInitializerNamespace(@$options['repositoryInitializerNamespace']);
+         ->setRepositoryInitializerNamespace($options['repositoryInitializerNamespace']);
   }
 
   public function getDefaultTemplateParam(array $param = array()){
@@ -131,7 +59,7 @@ class RepositoryGenerator{
 
   public function setGenerationPath($path){
 
-    $this->generationPath = rtrim($path, '/\\') ?: getcwd();
+    $this->generationPath = $this->ds( $path ) ?: getcwd();
 
     return $this;
 
@@ -145,7 +73,7 @@ class RepositoryGenerator{
 
   public function setGenerationTemplatePath($path){
 
-    $this->generationTemplatePath = rtrim($path, '/\\');
+    $this->generationTemplatePath = $this->ds( $path );
 
     return $this;
 
@@ -262,6 +190,98 @@ class RepositoryGenerator{
     }
 
     return $name;
+
+  }
+
+
+  protected function createFile($file, $template, array $param = array()){
+
+    $content = $this->parseTemplate($template, $param);
+    $path    = $this->getGenerationPath() .DIRECTORY_SEPARATOR .$this->ds( $file );
+
+    if(!$this->filesystem->exists($path))
+      $this->filesystem->dumpFile( $path , $content );
+
+  }
+
+  protected function getTemplateParser(){
+
+    if(!isset($this->templateParser)){
+
+      $dir                   = $this->getGenerationPath() .DIRECTORY_SEPARATOR .$this->getGenerationTemplatePath();
+      $loader                = new \Twig_Loader_Filesystem($dir);
+      $this->templateParser  = new \Twig_Environment($loader);
+
+    }
+
+    return $this->templateParser;
+
+  }
+
+  protected function parseTemplate($template, array $param = array()){
+
+    return $this->getTemplateParser()->render($template.'.php.twig', $param);
+
+  }
+
+  protected function createDirectory($dir){
+
+    $ds  = DIRECTORY_SEPARATOR;
+
+    //build full directory
+    $dir = $this->getGenerationPath() .$ds .ltrim( $this->ds( $dir ), $ds);
+
+    //create the directory if it doesn't exist
+    if(!$this->filesystem->exists($dir))
+      $this->filesystem->mkdir($dir);
+
+    return $dir;
+
+  }
+
+  protected function generateModel(array $param = array()){
+
+    return $this->generateFile('Model', $param);
+
+  }
+
+  protected function generateRepository(array $param = array()){
+
+      return $this->generateFile('Repository', $param);
+
+  }
+
+  protected function generateRepositoryInitializer(array $param = array()){
+
+      return $this->generateFile('RepositoryInitializer', $param);
+
+  }
+
+  protected function generateFile($type, array $param = array()){
+
+    $type      = ucfirst($type);
+    $namespace = $this->{'get'.$type.'Namespace'}();
+    $name      = $this->{'get'.$type.'Name'}();
+
+    //convert namespace into valid dir structure
+    $path      = $this->ds( $namespace );
+
+    //create the directory
+    $this->createDirectory( $path );
+
+    //build path to generated file
+    $file =  $path .DIRECTORY_SEPARATOR .$name .'.php';
+
+    //create file
+    return   $this->createFile($file, $type, $param);
+
+  }
+
+  protected function ds( $path ){
+
+    $path = str_replace( array("/", "\\"), DIRECTORY_SEPARATOR, $path );
+    $path = rtrim( $path, DIRECTORY_SEPARATOR );
+    return $path;
 
   }
 

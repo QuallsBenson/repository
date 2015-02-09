@@ -19,12 +19,18 @@ abstract class Repository implements RepositoryInterface{
 
   }
 
+  public function getModelResolver(){
+
+    return $this->modelResolver;
+
+  }
+
   public function getModel($name){
 
     if(isset($this->models[$name]))
       return $this->models[$name];
 
-    $model = $this->modelResolver->resolve($name);
+    $model = $this->getModelResolver()->resolve($name);
 
     if(!$model)
       throw new \Exception("Could Not Resolve Model: " .$name ." from given namespace(s)");

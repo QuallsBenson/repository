@@ -62,16 +62,21 @@ class GenerateCommand extends Command{
 
   }
 
-  protected function getConfigurationOptions($repositoryName, InputInterface $input, OutputInterface $output){
-
+  protected function getConfigurationOptions(){
 
     //get the contents of the config file as an array of options
     $options = $this->getConfigurationFileContents();
 
-    //add the name to the array
-    $options['name'] = $repositoryName;
+    return is_array( $options ) ? $options : (array) $options;
+  }
 
-    return (array) $options;
+  protected function validateConfigurationOptions(array $options){
+
+    return (isset($options['generationPath'])      &&
+            isset($options['templatePath'])        &&
+            isset($options['modelNamespace'])      &&
+            isset($options['repositoryNamespace']) &&
+            isset($options['name']));
 
   }
 
@@ -90,10 +95,16 @@ class GenerateCommand extends Command{
     //give error if name is not set
     if(!$name) throw new \Exception('missing argument name in Repository:generate {name}');
 
-    $options = $this->getConfigurationOptions($name, $input, $output);
+    $options = array("name" => $name);
+    $options = array_merge( $options, $this->getConfigurationOptions() );
+
+    //give an error if configuration not set
+    if(!$this->validateConfigurationOptions( $options ))
+       throw new \Exception("Required Configuration Parameters Not Set");
 
     //ask user to confirm generation, exit if not
     $confirm = $this->confirmGeneration($name);
+
     if($qhelper->ask($input, $output, $confirm) !== 'yes'){
 
       $output->writeln("\n\nRepository Generation Cancelled\n\n");
