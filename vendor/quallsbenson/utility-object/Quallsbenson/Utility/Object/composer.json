@@ -1,0 +1,22 @@
+{
+    "name": "quallsbenson/utility-object",
+    "description": "Utility Classes for handling objects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ric Anthony Lee",
+            "email": "ricanthonylee@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-0": {
+        "Quallsbenson\\Utility\\Object": ""
+      },
+      "files": [
+        "Quallsbenson/Utility/Object/helpers.php"
+      ]
+
+
+    },
+    "target-dir": "Quallsbenson/Utility/Object"
+}

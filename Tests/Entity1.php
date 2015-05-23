@@ -1,4 +1,4 @@
-<?php namespace Designplug\Repository\Tests;
+<?php namespace Quallsbenson\Repository\Tests;
 
 class Entity1{
 

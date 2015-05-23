@@ -1,7 +1,7 @@
-<?php namespace Designplug\Repository\Tests\RepositoryInitializer;
+<?php namespace Quallsbenson\Repository\Tests\RepositoryInitializer;
 
-use Designplug\Repository\RepositoryInitializer;
-use Designplug\Repository\Tests\Repository\Entity1Repository;
+use Quallsbenson\Repository\RepositoryInitializer;
+use Quallsbenson\Repository\Tests\Repository\Entity1Repository;
 
 class Entity1RepositoryInitializer extends RepositoryInitializer{
 

@@ -1,6 +1,6 @@
-<?php  namespace Designplug\Repository\Tests\Generator\Repository ;
+<?php  namespace Quallsbenson\Repository\Tests\Generator\Repository ;
 
-use Designplug\Repository\Repository;
+use Quallsbenson\Repository\Repository;
 
 class Example1237Repository extends Repository{
 

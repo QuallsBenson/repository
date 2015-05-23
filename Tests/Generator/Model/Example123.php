@@ -1,4 +1,4 @@
-<?php  namespace Designplug\Repository\Tests\Generator\Model ;
+<?php  namespace Quallsbenson\Repository\Tests\Generator\Model ;
 
 class Example123{
 

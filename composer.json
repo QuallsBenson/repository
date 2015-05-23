@@ -1,5 +1,5 @@
 {
-    "name": "designplug/repository",
+    "name": "quallsbenson/repository",
     "description": "Classes for managing repositories",
     "authors": [
         {
@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-      "designplug/utility-object": "~1.0.0",
+      "quallsbenson/utility-object": "0.1.0",
       "symfony/console": "~2.5",
       "symfony/filesystem": "~2.5",
       "symfony/finder": "~2.5",
@@ -16,8 +16,8 @@
     },
     "autoload": {
       "psr-0": {
-        "Designplug\\Repository": ""
+        "Quallsbenson\\Repository": ""
       }
     },
-    "target-dir": "Designplug/Repository"
+    "target-dir": "Quallsbenson/Repository"
 }

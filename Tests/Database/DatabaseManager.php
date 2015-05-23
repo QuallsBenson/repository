@@ -1,6 +1,6 @@
-<?php namespace Designplug\Repository\Tests\Database;
+<?php namespace Quallsbenson\Repository\Tests\Database;
 
-use Designplug\Repository\Database\DatabaseManagerInterface;
+use Quallsbenson\Repository\Database\DatabaseManagerInterface;
 
 class DatabaseManager implements DatabaseManagerInterface{
 

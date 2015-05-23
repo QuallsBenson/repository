@@ -2,7 +2,7 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use Designplug\Repository\CLI\Command\GenerateCommand;
+use Quallsbenson\Repository\CLI\Command\GenerateCommand;
 
 require dirname(__FILE__) .'/../../vendor/autoload.php';
 

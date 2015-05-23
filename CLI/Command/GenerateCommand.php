@@ -1,6 +1,6 @@
-<?php namespace Designplug\Repository\CLI\Command;
+<?php namespace Quallsbenson\Repository\CLI\Command;
 
-use Designplug\Repository\FileSystem\RepositoryGenerator;
+use Quallsbenson\Repository\FileSystem\RepositoryGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/designplug/utility-object/Designplug/Utility/Object/helpers.php',
+    $vendorDir . '/quallsbenson/utility-object/Quallsbenson/Utility/Object/helpers.php',
 );

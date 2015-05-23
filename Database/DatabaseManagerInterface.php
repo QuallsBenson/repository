@@ -1,4 +1,4 @@
-<?php namespace Designplug\Repository\Database;
+<?php namespace Quallsbenson\Repository\Database;
 
 
 

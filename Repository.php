@@ -1,8 +1,9 @@
-<?php namespace Designplug\Repository;
+<?php namespace Quallsbenson\Repository;
 
-use Designplug\Utility\Object\ObjectResolver;
-use Designplug\Utility\Object\ObjectWrapper;
-use Designplug\Repository\Database\DatabaseManagerInterface;
+use Quallsbenson\Utility\Object\ObjectResolver;
+use Quallsbenson\Utility\Object\ObjectWrapper;
+use Quallsbenson\Repository\Database\DatabaseManagerInterface;
+
 
 
 abstract class Repository implements RepositoryInterface{
@@ -19,18 +20,12 @@ abstract class Repository implements RepositoryInterface{
 
   }
 
-  public function getModelResolver(){
-
-    return $this->modelResolver;
-
-  }
-
   public function getModel($name){
 
     if(isset($this->models[$name]))
       return $this->models[$name];
 
-    $model = $this->getModelResolver()->resolve($name);
+    $model = $this->modelResolver->resolve($name);
 
     if(!$model)
       throw new \Exception("Could Not Resolve Model: " .$name ." from given namespace(s)");
@@ -106,3 +101,4 @@ abstract class Repository implements RepositoryInterface{
   }
 
 }
+

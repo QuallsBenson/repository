@@ -1,4 +1,4 @@
-<?php namespace Designplug\Repository\Tests\Service;
+<?php namespace Quallsbenson\Repository\Tests\Service;
 
 
 class Service2{

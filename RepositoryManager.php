@@ -1,7 +1,7 @@
-<?php namespace Designplug\Repository;
+<?php namespace Quallsbenson\Repository;
 
-use Designplug\Utility\Object\ObjectResolver;
-use Designplug\Repository\Database\DatabaseManagerInterface;
+use Quallsbenson\Utility\Object\ObjectResolver;
+use Quallsbenson\Repository\Database\DatabaseManagerInterface;
 
 class RepositoryManager{
 

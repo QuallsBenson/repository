@@ -1,4 +1,4 @@
-<?php namespace Designplug\Repository;
+<?php namespace Quallsbenson\Repository;
 
 
 interface RepositoryInitializerInterface{

@@ -10,6 +10,6 @@ return array(
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'Designplug\\Utility\\Object' => array($vendorDir . '/designplug/utility-object'),
-    'Designplug\\Repository' => array($baseDir . '/'),
+    'Quallsbenson\\Utility\\Object' => array($vendorDir . '/quallsbenson/utility-object'),
+    'Quallsbenson\\Repository' => array($baseDir . '/'),
 );

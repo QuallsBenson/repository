@@ -1,10 +1,10 @@
 <?php
 
-use Designplug\Utility\Object\ObjectResolver;
-use Designplug\Utility\Object\ObjectWrapper;
-use Designplug\Repository\RepositoryManager;
-use Designplug\Repository\Database\DatabaseManagerInterface;
-use Designplug\Repository\Tests\Database\DatabaseManager;
+use Quallsbenson\Utility\Object\ObjectResolver;
+use Quallsbenson\Utility\Object\ObjectWrapper;
+use Quallsbenson\Repository\RepositoryManager;
+use Quallsbenson\Repository\Database\DatabaseManagerInterface;
+use Quallsbenson\Repository\Tests\Database\DatabaseManager;
 
 
 require dirname(dirname(__FILE__)) .'/vendor/autoload.php';
@@ -13,14 +13,14 @@ class RepositoryTest extends PHPUnit_Framework_TestCase{
 
   public function testInitializeManager(){
 
-    $manager = new RepositoryManager('Designplug\Repository\Tests\Repository',
-                                     'Designplug\Repository\Tests\Entity',
-                                     'Designplug\Repository\Tests\RepositoryInitializer');
+    $manager = new RepositoryManager('Quallsbenson\Repository\Tests\Repository',
+                                     'Quallsbenson\Repository\Tests\Entity',
+                                     'Quallsbenson\Repository\Tests\RepositoryInitializer');
 
     $manager->setDatabaseManager(new DatabaseManager);
     $manager->setInitializationServices(array(
-                                        'service1' => 'Designplug\Repository\Tests\Service\Service1',
-                                        'service2' => 'Designplug\Repository\Tests\Service\Service2'
+                                        'service1' => 'Quallsbenson\Repository\Tests\Service\Service1',
+                                        'service2' => 'Quallsbenson\Repository\Tests\Service\Service2'
                                         )
                                       );
 
@@ -57,14 +57,14 @@ class RepositoryTest extends PHPUnit_Framework_TestCase{
 
     $service = $repo->getService('service1');
 
-    $this->assertEquals($service->getName(), 'Designplug\Repository\Tests\Service\Service1');
+    $this->assertEquals($service->getName(), 'Quallsbenson\Repository\Tests\Service\Service1');
 
     $serviceInstance = $service->getInstance();
 
-    $this->assertEquals(get_class($serviceInstance), 'Designplug\Repository\Tests\Service\Service1');
+    $this->assertEquals(get_class($serviceInstance), 'Quallsbenson\Repository\Tests\Service\Service1');
 
 
-    $this->assertEquals($repo->service1()->getName(), 'Designplug\Repository\Tests\Service\Service1');
+    $this->assertEquals($repo->service1()->getName(), 'Quallsbenson\Repository\Tests\Service\Service1');
 
     return $repo;
 

@@ -1,4 +1,4 @@
-<?php namespace Designplug\Repository\FileSystem;
+<?php namespace Quallsbenson\Repository\FileSystem;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
