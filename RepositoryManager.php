@@ -6,12 +6,12 @@ use Quallsbenson\Repository\Database\DatabaseManagerInterface;
 class RepositoryManager{
 
   protected $modelNamespace,
-  $repositories = array(),
-  $repositoryResolver,
-  $repositoryInitializerResolver,
-  $modelResolver,
-  $initializationServices = array(),
-  $databaseManager;
+            $repositories = array(),
+            $repositoryResolver,
+            $repositoryInitializerResolver,
+            $modelResolver,
+            $initializationServices = array(),
+            $databaseManager;
 
   public function __construct($repositoryNamespace, $modelNamespace, $repositoryInitializerNamespace = null){
 
