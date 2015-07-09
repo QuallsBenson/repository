@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-      "quallsbenson/utility-object": "0.1.1",
+      "quallsbenson/utility-object": "dev-master",
       "symfony/console": "~2.5",
       "symfony/filesystem": "~2.5",
       "symfony/finder": "~2.5",
