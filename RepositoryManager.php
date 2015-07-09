@@ -64,7 +64,7 @@ class RepositoryManager{
 
   }
 
-  public function getInitializationServices( $repoName = false )
+  public function getInitializationServices( $repoName )
   {
 
     return $this->initializationServices;
@@ -124,7 +124,7 @@ class RepositoryManager{
     $repository->setModelResolver( $this->getModelResolver() );
     $repository->setDatabaseManager( $this->databaseManager );
 
-    $initializer->initialize( $repository, $this->getInitializationServices() );
+    $initializer->initialize( $repository, $this->getInitializationServices( $name ) );
 
     return $repository;
 
